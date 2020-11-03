@@ -8,19 +8,30 @@ const Container = styled.div`
   border-radius: 2px;
   margin-bottom: 8px;
   background-color: white;
+  display: flex;
 `;
 
-const Task = ({task}) => (
+const Handle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 4px;
+  margin-right: 8px;
+`;
+
+const Task = ({task, index}) => (
   <Draggable
     draggableId={task.id}
-    index={task.index}
+    index={index}
   >
     {(provided) => (
       <Container
         {...provided.draggableProps}
-        {...provided.dragHandleProps}
         ref={provided.innerRef}
       >
+        <Handle
+          {...provided.dragHandleProps}
+        />
         {task.content}
       </Container>
     )}
